@@ -1,9 +1,8 @@
-import { Drive } from "@/components/drive"
+import DriveLayout from "@/components/drive-layout"
+import { getMockData } from "@/lib/mock-data"
 
-export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-background">
-      <Drive />
-    </div>
-  )
+export default function Home() {
+  const { files, folders } = getMockData()
+
+  return <DriveLayout files={files} folders={folders} currentPath="/" />
 }
