@@ -49,7 +49,7 @@ export default function DriveLayout({
     const newPath = pathParts.join("/") || "/"
     setCurrentPath(newPath)
 
-    const { files: newFiles, folders: newFolders } = getMockData()
+    const { files: newFiles, folders: newFolders } = getMockData(null)
     setFiles(newFiles)
     setFolders(newFolders)
   }

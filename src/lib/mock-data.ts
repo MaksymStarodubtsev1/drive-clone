@@ -4,70 +4,29 @@ import type { File, Folder } from "./types"
 const generateId = () => Math.random().toString(36).substring(2, 10)
 
 // Generate mock files
-const generateMockFiles = (folderId?: string): File[] => {
-  const baseFiles: File[] = [
-    {
-      id: generateId(),
-      name: "Project Proposal.docx",
-      type: "document",
-      size: 1024 * 1024 * 2.3, // 2.3 MB
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 2).toISOString(), // 2 days ago
-    },
-    {
-      id: generateId(),
-      name: "Presentation.pptx",
-      type: "document",
-      size: 1024 * 1024 * 5.7, // 5.7 MB
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 5).toISOString(), // 5 days ago
-    },
-    {
-      id: generateId(),
-      name: "Budget.xlsx",
-      type: "document",
-      size: 1024 * 1024 * 1.2, // 1.2 MB
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 1).toISOString(), // 1 day ago
-    },
-    {
-      id: generateId(),
-      name: "Team Photo.jpg",
-      type: "image",
-      size: 1024 * 1024 * 3.5, // 3.5 MB
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 7).toISOString(), // 7 days ago
-      thumbnail: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      id: generateId(),
-      name: "Product Demo.mp4",
-      type: "video",
-      size: 1024 * 1024 * 15.8, // 15.8 MB
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 3).toISOString(), // 3 days ago
-    },
-  ]
+const generateMockFiles = (folderId: Folder['parentId']): File[] => {
+  const baseFiles: File[] = []
 
   // If a folder ID is provided, return a different set of files
   if (folderId) {
     return [
       {
         id: generateId(),
-        name: "Document 1.docx",
+        name: "Project Proposal.docx",
         type: "document",
-        size: 1024 * 1024 * 1.1, // 1.1 MB
-        modifiedAt: new Date(Date.now() - 3600000 * 24 * 1).toISOString(), // 1 day ago
-      },
-      {
-        id: generateId(),
-        name: "Image 1.png",
-        type: "image",
-        size: 1024 * 1024 * 2.2, // 2.2 MB
+        size: 1024 * 1024 * 2.3, // 2.3 MB
         modifiedAt: new Date(Date.now() - 3600000 * 24 * 2).toISOString(), // 2 days ago
-        thumbnail: "/placeholder.svg?height=100&width=100",
+        parentId: folderId,
+        url: "/path/to/project-proposal.docx",
       },
       {
         id: generateId(),
-        name: "Notes.txt",
+        name: "Presentation.pptx",
         type: "document",
-        size: 1024 * 10, // 10 KB
-        modifiedAt: new Date(Date.now() - 3600000 * 24 * 3).toISOString(), // 3 days ago
+        size: 1024 * 1024 * 5.7, // 5.7 MB
+        modifiedAt: new Date(Date.now() - 3600000 * 24 * 5).toISOString(), // 5 days ago
+        parentId: folderId,
+        url: "/path/to/project-proposal.docx",
       },
     ]
   }
@@ -76,26 +35,15 @@ const generateMockFiles = (folderId?: string): File[] => {
 }
 
 // Generate mock folders
-const generateMockFolders = (parentId?: string): Folder[] => {
+const generateMockFolders = (parentId: Folder['parentId']): Folder[] => {
   const baseFolders: Folder[] = [
     {
-      id: "folder1",
-      name: "Projects",
+      id: generateId(),
+      name: "Subfolder 1",
       modifiedAt: new Date(Date.now() - 3600000 * 24 * 1).toISOString(), // 1 day ago
-    },
-    {
-      id: "folder2",
-      name: "Documents",
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 3).toISOString(), // 3 days ago
-    },
-    {
-      id: "folder3",
-      name: "Images",
-      modifiedAt: new Date(Date.now() - 3600000 * 24 * 5).toISOString(), // 5 days ago
+      parentId: null,
     },
   ]
-
-  // If a parent ID is provided, return a different set of folders
   if (parentId) {
     return [
       {
@@ -116,7 +64,7 @@ const generateMockFolders = (parentId?: string): Folder[] => {
   return baseFolders
 }
 
-export const getMockData = (folderId?: string) => {
+export const getMockData = (folderId: Folder['parentId']) => {
   return {
     files: generateMockFiles(folderId),
     folders: generateMockFolders(folderId),

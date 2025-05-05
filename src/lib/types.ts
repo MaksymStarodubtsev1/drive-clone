@@ -4,13 +4,14 @@ export interface File {
   type: "document" | "image" | "video" | "audio" | "other"
   size: number
   modifiedAt: string
-  url?: string
+  url: string
   thumbnail?: string
+  parentId: string
 }
 
 export interface Folder {
   id: string
   name: string
   modifiedAt: string
-  parentId?: string
+  parentId: string | null
 }
