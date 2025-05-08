@@ -13,7 +13,7 @@ export default function FolderPage() {
 
   // Get the last segment of the path which should be the folder ID
   const pathArray = Array.isArray(params.path) ? params.path : [params.path]
-  const folderId = pathArray[pathArray.length - 1] as string
+  const folderId = pathArray[pathArray.length - 1]  ?? ''
 
   const folder = getFolderById(folderId)
   const folderItems = getFolderContents(folderId)
