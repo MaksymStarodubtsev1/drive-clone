@@ -9,7 +9,7 @@ import { getFolderContents, getBreadcrumbPath, getFolderById } from "@/lib/utils
 
 export default function FolderPage() {
   const params = useParams()
-  const [view, setView] = useState<"grid" | "list">("grid")
+  const [view, setView] = useState<"grid" | "list">("list")
 
   // Get the last segment of the path which should be the folder ID
   const pathArray = Array.isArray(params.path) ? params.path : [params.path]
@@ -27,7 +27,7 @@ export default function FolderPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">{folder.name}</h1>
-        <ViewToggle view={view} setView={setView} />
+        <ViewToggle view={view} setViewAction={setView} />
       </div>
 
       <Breadcrumb path={breadcrumbPath} />
