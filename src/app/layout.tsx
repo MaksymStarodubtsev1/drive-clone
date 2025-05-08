@@ -1,25 +1,25 @@
-import "@/styles/globals.css";
+import type React from "react"
+import "../styles/globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 
-import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Cloud Storage",
-  description: "Cloud Storage for your files",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
+  title: "Google Drive Clone",
+  description: "A Google Drive UI clone built with Next.js",
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body className={inter.className}>
+        <main className="min-h-screen bg-gray-50">{children}</main>
+      </body>
     </html>
-  );
+  )
 }

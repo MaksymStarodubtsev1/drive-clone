@@ -1,0 +1,34 @@
+"use client"
+
+import { Grid, List } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+interface ViewToggleProps {
+  view: "grid" | "list"
+  setView: (view: "grid" | "list") => void
+}
+
+export function ViewToggle({ view, setView }: ViewToggleProps) {
+  return (
+    <div className="flex items-center space-x-2">
+      <Button
+        variant={view === "grid" ? "default" : "outline"}
+        size="sm"
+        onClick={() => setView("grid")}
+        className="h-8 w-8 p-0"
+      >
+        <Grid className="h-4 w-4" />
+        <span className="sr-only">Grid view</span>
+      </Button>
+      <Button
+        variant={view === "list" ? "default" : "outline"}
+        size="sm"
+        onClick={() => setView("list")}
+        className="h-8 w-8 p-0"
+      >
+        <List className="h-4 w-4" />
+        <span className="sr-only">List view</span>
+      </Button>
+    </div>
+  )
+}
