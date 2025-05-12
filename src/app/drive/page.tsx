@@ -3,11 +3,11 @@
 import { useState } from "react"
 import { Breadcrumb } from "@/components/drive/breadcrumb"
 import { ViewToggle } from "@/components/drive/view-toggle"
-import { FileGrid } from "@/components/drive/file-grid"
+import {FileGrid, ViewType} from "@/components/drive/file-grid"
 import { getFolderContents, getBreadcrumbPath } from "@/lib/utils"
 
 export default function DrivePage() {
-  const [view, setView] = useState<"grid" | "list">("list")
+  const [view, setView] = useState<ViewType>(ViewType.List)
   const rootItems = getFolderContents("root")
   const breadcrumbPath = getBreadcrumbPath("root")
 

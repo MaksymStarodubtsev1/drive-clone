@@ -8,7 +8,7 @@ export enum ViewType {
 
 interface FileGridProps {
   items: DriveItem[]
-  view: "grid" | "list"
+  view: ViewType
 }
 
 export function FileGrid({ items, view }: FileGridProps) {
@@ -20,7 +20,7 @@ export function FileGrid({ items, view }: FileGridProps) {
     )
   }
 
-  if (view === "grid") {
+  if (view === ViewType.Grid) {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {items.map((item) => (
