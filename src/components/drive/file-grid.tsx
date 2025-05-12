@@ -1,6 +1,11 @@
 import type { DriveItem } from "@/lib/types"
 import { FileItem } from "./file-item"
 
+export enum ViewType {
+    Grid = "grid",
+    List = "list",
+}
+
 interface FileGridProps {
   items: DriveItem[]
   view: "grid" | "list"
