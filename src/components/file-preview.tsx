@@ -5,10 +5,10 @@ import type { File } from "@/lib/types"
 
 interface FilePreviewProps {
   file: File
-  onClose: () => void
+  onCloseAction: () => void
 }
 
-export default function FilePreview({ file, onClose }: FilePreviewProps) {
+export default function FilePreview({ file, onCloseAction }: FilePreviewProps) {
   const renderPreview = () => {
     switch (file.type) {
       case "image":
@@ -62,7 +62,7 @@ export default function FilePreview({ file, onClose }: FilePreviewProps) {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl h-[80vh] flex flex-col">
         <div className="flex items-center justify-between p-4 border-b">
           <h3 className="text-lg font-medium">{file.name}</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button onClick={onCloseAction} className="text-gray-500 hover:text-gray-700">
             <X className="w-6 h-6" />
           </button>
         </div>

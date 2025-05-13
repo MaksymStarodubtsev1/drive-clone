@@ -1,37 +1,47 @@
-import { type ClassValue, clsx } from "clsx"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+import type { DriveItem } from "./types"
+import { mockData } from "./mock-data"
+
+export function getFolderContents(folderId: string): DriveItem[] {
+  return mockData.filter((item) => item.parentId === folderId)
 }
 
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return "0 Bytes"
+export function getFolderById(folderId: string): DriveItem | undefined {
+  return mockData.find((item) => item.id === folderId && item.type === "folder")
+}
 
-  const k = 1024
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
+export function getBreadcrumbPath(folderId: string): DriveItem[] {
+  const path: DriveItem[] = []
+  let currentFolder = getFolderById(folderId)
 
-  return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i]
+  while (currentFolder) {
+    path.unshift(currentFolder)
+    if (currentFolder.parentId === null) break
+    currentFolder = getFolderById(currentFolder.parentId)
+  }
+
+  return path
+}
+
+export function formatFileSize(sizeInKB: number): string {
+  if (sizeInKB < 1024) {
+    return `${sizeInKB} KB`
+  } else {
+    return `${(sizeInKB / 1024).toFixed(2)} MB`
+  }
 }
 
 export function formatDate(dateString: string): string {
   const date = new Date(dateString)
-  const now = new Date()
-  const diffTime = Math.abs(now.getTime() - date.getTime())
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  })
+}
 
-  if (diffDays === 0) {
-    return "Today"
-  } else if (diffDays === 1) {
-    return "Yesterday"
-  } else if (diffDays < 7) {
-    return `${diffDays} days ago`
-  } else {
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: date.getFullYear() !== now.getFullYear() ? "numeric" : undefined,
-    })
-  }
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
