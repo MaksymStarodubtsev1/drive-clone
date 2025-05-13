@@ -6,8 +6,8 @@ import { Inter } from "next/font/google"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Google Drive Clone",
-  description: "A Google Drive UI clone built with Next.js",
+  title: "Folder storage",
+  description: "A folder storage built with Next.js",
 }
 
 export default function RootLayout({
