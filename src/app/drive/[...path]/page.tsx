@@ -10,8 +10,7 @@ import { getFolderContents, getBreadcrumbPath, getFolderById } from "@/lib/utils
 export default function FolderPage() {
   const params = useParams()
   const [view, setView] = useState<ViewType>(ViewType.List)
-
-  // Get the last segment of the path which should be the folder ID
+    
   const pathArray = Array.isArray(params.path) ? params.path : [params.path]
   const folderId = pathArray[pathArray.length - 1]  ?? ''
 
