@@ -1,3 +1,5 @@
+import {FileType} from "@/components/file-preview";
+
 export interface BaseItem {
   id: string
   name: string
@@ -6,7 +8,7 @@ export interface BaseItem {
 }
 
 export interface File extends BaseItem {
-  type: "file" | "image" | "video" | "document"
+  type: "file" | FileType
   extension: string // e.g., 'pdf', 'docx'
   size: number // in KB
   url?: string // URL to the file

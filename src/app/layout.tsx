@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Folder storage",
-  description: "A folder storage built with Next.js",
+  description: "A folder storage for your needs",
 }
 
 export default function RootLayout({

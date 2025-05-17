@@ -3,6 +3,12 @@
 import { X } from "lucide-react"
 import type { File } from "@/lib/types"
 
+export enum FileType {
+    Image = "image",
+    Document = "document",
+    Video = "video",
+}
+
 interface FilePreviewProps {
   file: File
   onCloseAction: () => void
@@ -11,7 +17,7 @@ interface FilePreviewProps {
 export default function FilePreview({ file, onCloseAction }: FilePreviewProps) {
   const renderPreview = () => {
     switch (file.type) {
-      case "image":
+      case FileType.Image:
         return (
           <div className="flex items-center justify-center h-full">
             <img
@@ -21,7 +27,7 @@ export default function FilePreview({ file, onCloseAction }: FilePreviewProps) {
             />
           </div>
         )
-      case "document":
+      case FileType.Document:
         return (
           <div className="bg-white p-8 max-w-2xl mx-auto h-full overflow-auto">
             <h1 className="text-2xl font-bold mb-4">Document Preview</h1>
@@ -33,7 +39,7 @@ export default function FilePreview({ file, onCloseAction }: FilePreviewProps) {
             </p>
           </div>
         )
-      case "video":
+      case FileType.Video:
         return (
           <div className="flex items-center justify-center h-full">
             <video
