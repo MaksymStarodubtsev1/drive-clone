@@ -1,4 +1,4 @@
-import {FileType} from "@/components/file-preview";
+import type { FileType } from "@/components/file-preview";
 
 export interface BaseItem {
   id: string
