@@ -7,7 +7,7 @@ export const files = createTable("files_table", {
     name: text("name").notNull(),
     url: text("url").notNull(),
     size: int("size").notNull(),
-    parentId: bigint("parent_id", {mode: "number", unsigned: true}).notNull(),
+    parentId: bigint("parent_id", {mode: "bigint", unsigned: true}).notNull(),
 }, (table) => {
     return [index("parent_index").on(table.parentId)]
 })
