@@ -1,6 +1,6 @@
-import type { DriveItem } from "./types"
+import type {DriveItem, File, Folder} from "./types"
 
-export const mockDataFolder: DriveItem[] = [
+export const mockDataFolder: Folder[] = [
   {
     id: 1,
     name: "My Drive",
@@ -43,7 +43,7 @@ export const mockDataFolder: DriveItem[] = [
   },
 ]
 
-export const mockDataFile: DriveItem[] = [
+export const mockDataFile: File[] = [
   {
     id: 1,
     name: "Project Plan",
