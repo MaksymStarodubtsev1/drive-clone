@@ -1,9 +1,9 @@
 import type { FileType } from "@/components/file-preview";
 
 export interface BaseItem {
-  id: string
+  id: number
   name: string
-  parentId: string | null // `null` = root level
+  parentId: number | null // `null` = root level
   createdAt: string // ISO date string
 }
 

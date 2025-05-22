@@ -14,9 +14,9 @@ export default function FolderPage() {
   const pathArray = Array.isArray(params.path) ? params.path : [params.path]
   const folderId = pathArray[pathArray.length - 1]  ?? ''
 
-  const folder = getFolderById(folderId)
-  const folderItems = getFolderContents(folderId)
-  const breadcrumbPath = getBreadcrumbPath(folderId)
+  const folder = getFolderById(Number(folderId))
+  const folderItems = getFolderContents(Number(folderId))
+  const breadcrumbPath = getBreadcrumbPath(Number(folderId))
 
   if (!folder) {
     return <div className="container mx-auto px-4 py-8">Folder not found</div>

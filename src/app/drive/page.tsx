@@ -8,8 +8,8 @@ import { getFolderContents, getBreadcrumbPath } from "@/lib/utils"
 
 export default function DrivePage() {
   const [view, setView] = useState<ViewType>(ViewType.List)
-  const rootItems = getFolderContents("root")
-  const breadcrumbPath = getBreadcrumbPath("root")
+  const rootItems = getFolderContents(1)
+  const breadcrumbPath = getBreadcrumbPath(1)
 
   return (
     <div className="container mx-auto px-4 py-8">

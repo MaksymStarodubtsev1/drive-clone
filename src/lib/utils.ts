@@ -4,15 +4,15 @@ import { twMerge } from "tailwind-merge"
 import type { DriveItem } from "./types"
 import { mockData } from "./mock-data"
 
-export function getFolderContents(folderId: string): DriveItem[] {
+export function getFolderContents(folderId: number): DriveItem[] {
   return mockData.filter((item) => item.parentId === folderId)
 }
 
-export function getFolderById(folderId: string): DriveItem | undefined {
+export function getFolderById(folderId: number): DriveItem | undefined {
   return mockData.find((item) => item.id === folderId && item.type === "folder")
 }
 
-export function getBreadcrumbPath(folderId: string): DriveItem[] {
+export function getBreadcrumbPath(folderId: number): DriveItem[] {
   const path: DriveItem[] = []
   let currentFolder = getFolderById(folderId)
 

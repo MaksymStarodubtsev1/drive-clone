@@ -15,7 +15,7 @@ export function Breadcrumb({ path }: BreadcrumbProps) {
         <div key={item.id} className="flex items-center">
           {index > 0 && <ChevronRight className="h-4 w-4 mx-1 text-gray-400" />}
           <Link
-            href={item.id === "root" ? "/drive" : `/drive/${item.id}`}
+            href={item.id === 1 ? "/drive" : `/drive/${item.id}`}
             className="hover:text-gray-900 hover:underline"
           >
             {item.name}
