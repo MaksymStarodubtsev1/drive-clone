@@ -4,10 +4,11 @@ import Link from "next/link"
 import { File, FileText, FileImage, FileIcon as FilePdf, FileCode, Folder } from "lucide-react"
 import type { DriveItem } from "@/lib/types"
 import { formatFileSize, formatDate } from "@/lib/utils"
+import {ViewType} from "@/components/drive/file-grid";
 
 interface FileItemProps {
   item: DriveItem
-  view: "grid" | "list"
+  view: ViewType
 }
 
 export function FileItem({ item, view }: FileItemProps) {
