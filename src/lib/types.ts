@@ -1,4 +1,4 @@
-import type { FileType } from "@/components/file-preview";
+import type {files, folders} from "@/server/db/schema";
 
 export interface BaseItem {
   id: number
@@ -7,17 +7,8 @@ export interface BaseItem {
   createdAt: string // ISO date string
 }
 
-export interface File extends BaseItem {
-  type: "file" | FileType
-  extension: string // e.g., 'pdf', 'docx'
-  size: number // in KB
-  url?: string // URL to the file
-}
+export type File = typeof files.$inferSelect
+export type Folder = typeof folders.$inferSelect
 
-export interface Folder extends BaseItem {
-  type: "folder"
-  childrenCount: number
-  itemsCount?: number
-}
 
 export type DriveItem = File | Folder
