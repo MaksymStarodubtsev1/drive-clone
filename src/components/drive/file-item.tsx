@@ -1,14 +1,40 @@
 "use client"
 
 import Link from "next/link"
-import { File, FileText, FileImage, FileIcon as FilePdf, FileCode, Folder } from "lucide-react"
+import { FileText, FileImage, FileIcon as FilePdf, FileCode } from "lucide-react"
 import type { DriveItem } from "@/lib/types"
 import { formatFileSize, formatDate } from "@/lib/utils"
 import {ViewType} from "@/components/drive/file-grid";
+import type { File, Folder} from "@/lib/types"
 
 interface FileItemProps {
   item: DriveItem
   view: ViewType
+}
+
+interface FolderItemProps {
+  folder: Folder
+  view: ViewType
+}
+
+export function FolderItem({ folder, view }: FolderItemProps) {
+  const getFileIcon = () => {
+    return <Folder className="h-10 w-10 text-blue-500" />
+  }
+
+  const itemUrl =  `/drive/${folder.id}`
+
+  if (view === ViewType.Grid) {
+    return (
+        <Link
+            href={itemUrl}
+            className="group flex flex-col items-center p-4 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          {getFileIcon()}
+          <span className="mt-2 text-sm font-medium text-center truncate max-w-full">{folder.name}</span>
+        </Link>
+    )
+  }
 }
 
 export function FileItem({ item, view }: FileItemProps) {
@@ -39,7 +65,7 @@ export function FileItem({ item, view }: FileItemProps) {
 
   const itemUrl = item.type === "folder" ? `/drive/${item.id}` : "#" // In a real app, this would link to file preview
 
-  if (view === "grid") {
+  if (view === ViewType.Grid) {
     return (
       <Link
         href={itemUrl}

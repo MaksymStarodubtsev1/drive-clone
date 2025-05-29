@@ -1,4 +1,4 @@
-import type { DriveItem } from "@/lib/types"
+import type { File, Folder} from "@/lib/types"
 import { FileItem } from "./file-item"
 
 export enum ViewType {
@@ -7,12 +7,13 @@ export enum ViewType {
 }
 
 interface FileGridProps {
-  items: DriveItem[]
+  folders: Folder[]
+  files: File[]
   view: ViewType
 }
 
-export function FileGrid({ items, view }: FileGridProps) {
-  if (items.length === 0) {
+export function FileGrid({ files, folders, view }: FileGridProps) {
+  if (files.length === 0 || folders.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-gray-500">
         <p>This folder is empty</p>
