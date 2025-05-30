@@ -6,6 +6,13 @@
       "when": 1747742725657,
       "tag": "0000_dark_rumiko_fujikawa",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "1",
+      "when": 1748633681430,
+      "tag": "0001_young_prism",
+      "breakpoints": true
     }
   ]
 }
