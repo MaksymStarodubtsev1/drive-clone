@@ -1,5 +1,5 @@
 import type { File, Folder} from "@/lib/types"
-import { FileItem } from "./file-item"
+import {FileItem, FolderItem} from "./file-item"
 
 export enum ViewType {
     Grid = "grid",
@@ -24,8 +24,8 @@ export function FileGrid({ files, folders, view }: FileGridProps) {
   if (view === ViewType.Grid) {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {items.map((item) => (
-          <FileItem key={item.id} item={item} view={view} />
+        {folders.map((item) => (
+          <FolderItem key={item.id} folder={item} view={view} />
         ))}
       </div>
     )
@@ -33,8 +33,8 @@ export function FileGrid({ files, folders, view }: FileGridProps) {
 
   return (
     <div className="flex flex-col divide-y">
-      {items.map((item) => (
-        <FileItem key={item.id} item={item} view={view} />
+      {files.map((item) => (
+        <FileItem key={item.id} file={item} view={view} />
       ))}
     </div>
   )
