@@ -8,7 +8,7 @@ import { getFolderContents, getBreadcrumbPath } from "@/lib/utils"
 
 export default function DrivePage() {
   const [view, setView] = useState<ViewType>(ViewType.List)
-  const rootItems = getFolderContents(1)
+  const {folders: folderItems, files: filesItems} = getFolderContents(null)
   const breadcrumbPath = getBreadcrumbPath(1)
 
   return (
@@ -21,7 +21,7 @@ export default function DrivePage() {
       <Breadcrumb path={breadcrumbPath} />
 
       <div className="bg-white rounded-lg shadow p-4">
-        <FileGrid items={rootItems} view={view} />
+        <FileGrid folders={folderItems} files={filesItems} view={view} />
       </div>
     </div>
   )

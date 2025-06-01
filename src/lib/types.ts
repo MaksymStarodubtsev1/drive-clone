@@ -10,5 +10,6 @@ export interface BaseItem {
 export type File = typeof files.$inferSelect
 export type Folder = typeof folders.$inferSelect
 
+export type DriveMockData = {files: File[], folders: Folder[]}
 
 export type DriveItem = File | Folder

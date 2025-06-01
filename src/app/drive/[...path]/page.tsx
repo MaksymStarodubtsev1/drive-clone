@@ -15,7 +15,7 @@ export default function FolderPage() {
   const folderId = pathArray[pathArray.length - 1]  ?? ''
 
   const folder = getFolderById(Number(folderId))
-  const folderItems = getFolderContents(Number(folderId))
+  const {folders: folderItems, files: filesItems} = getFolderContents(Number(folderId))
   const breadcrumbPath = getBreadcrumbPath(Number(folderId))
 
   if (!folder) {
@@ -32,7 +32,7 @@ export default function FolderPage() {
       <Breadcrumb path={breadcrumbPath} />
 
       <div className="bg-white rounded-lg shadow p-4">
-        <FileGrid items={folderItems} view={view} />
+        <FileGrid folders={folderItems} files={filesItems} view={view} />
       </div>
     </div>
   )
