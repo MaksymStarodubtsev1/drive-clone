@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useParams } from "next/navigation"
 import { Breadcrumb } from "@/components/drive/breadcrumb"
 import { ViewToggle } from "@/components/drive/view-toggle"
-import {FileGrid, ViewType} from "@/components/drive/file-grid"
+import {FileGrid, ItemsView, ViewType} from "@/components/drive/items-view"
 import { getFolderContents, getBreadcrumbPath, getFolderById } from "@/lib/utils"
 
 export default function FolderPage() {
@@ -32,7 +32,7 @@ export default function FolderPage() {
       <Breadcrumb path={breadcrumbPath} />
 
       <div className="bg-white rounded-lg shadow p-4">
-        <FileGrid folders={folderItems} files={filesItems} view={view} />
+        <ItemsView folders={folderItems} files={filesItems} view={view} />
       </div>
     </div>
   )

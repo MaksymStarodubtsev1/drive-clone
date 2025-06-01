@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Folder, File } from "lucide-react"
 import { formatFileSize } from "@/lib/utils"
-import {ViewType} from "@/components/drive/file-grid";
+import {ViewType} from "@/components/drive/items-view";
 import type { Folder as FolderType, File as FileType} from "@/lib/types"
 
 interface FileItemProps {
