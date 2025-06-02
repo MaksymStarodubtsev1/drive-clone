@@ -1,15 +1,15 @@
 {
   "version": "1",
   "dialect": "singlestore",
-  "id": "1b53c65d-dffa-4d7c-80bc-863897d23290",
+  "id": "10828249-e9fe-44ce-9715-b2d2690de4d6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "files_table": {
-      "name": "files_table",
+    "drive-store_files_table": {
+      "name": "drive-store_files_table",
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -17,13 +17,6 @@
         "name": {
           "name": "name",
           "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "parent_id": {
-          "name": "parent_id",
-          "type": "int",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -41,20 +34,19 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "parent_id": {
+          "name": "parent_id",
+          "type": "bigint unsigned",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         }
       },
-      "indexes": {
-        "parent_index": {
-          "name": "parent_index",
-          "columns": [
-            "parent_id"
-          ],
-          "isUnique": false
-        }
-      },
+      "indexes": {},
       "compositePrimaryKeys": {
-        "files_table_id": {
-          "name": "files_table_id",
+        "drive-store_files_table_id": {
+          "name": "drive-store_files_table_id",
           "columns": [
             "id"
           ]
@@ -62,12 +54,12 @@
       },
       "uniqueConstraints": {}
     },
-    "folders_table": {
-      "name": "folders_table",
+    "drive-store_folders_table": {
+      "name": "drive-store_folders_table",
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -81,24 +73,16 @@
         },
         "parent_id": {
           "name": "parent_id",
-          "type": "int",
+          "type": "bigint unsigned",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
-      "indexes": {
-        "parent_index": {
-          "name": "parent_index",
-          "columns": [
-            "parent_id"
-          ],
-          "isUnique": false
-        }
-      },
+      "indexes": {},
       "compositePrimaryKeys": {
-        "folders_table_id": {
-          "name": "folders_table_id",
+        "drive-store_folders_table_id": {
+          "name": "drive-store_folders_table_id",
           "columns": [
             "id"
           ]

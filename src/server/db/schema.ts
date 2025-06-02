@@ -1,11 +1,11 @@
 import "server-only";
 
-import {int, text, singlestoreTableCreator, index, bigint} from "drizzle-orm/singlestore-core";
+import { singlestoreTableCreator, bigint, text, int, index } from "drizzle-orm/singlestore-core";
 
 const createTable = singlestoreTableCreator((tableName) => `drive-store_${tableName}`)
 
 export const files = createTable("files_table", {
-    id: bigint("id", {mode: "number", unsigned: true}).primaryKey().autoincrement(),
+    id: bigint("id", {mode: "number", unsigned: true}).autoincrement().notNull().primaryKey(),
     name: text("name").notNull(),
     url: text("url").notNull(),
     size: int("size").notNull(),
@@ -15,9 +15,9 @@ export const files = createTable("files_table", {
 })
 
 export const folders = createTable("folders_table", {
-    id: bigint("id", {mode: "number", unsigned: true}).primaryKey().autoincrement(),
+    id: bigint("id", {mode: "number", unsigned: true}).autoincrement().notNull().primaryKey(),
     name: text("name").notNull(),
     parentId: bigint("parent_id", {mode: "number", unsigned: true}).notNull(),
 }, (table) => {
     return [index("parent_index").on(table.parentId)]
-})
+});
