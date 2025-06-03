@@ -1,5 +1,3 @@
-import "server-only";
-
 import { singlestoreTableCreator, bigint, text, int, index, timestamp, varchar } from "drizzle-orm/singlestore-core";
 
 const createTable = singlestoreTableCreator((tableName) => `drive-store_${tableName}`)
@@ -27,4 +25,4 @@ export const folders = createTable("folders_table", {
     updatedAt: timestamp("updated_at").defaultNow().onUpdateNow().notNull(),
 }, (table) => {
     return [index("parent_index").on(table.parentId)]
-});
+}); 
