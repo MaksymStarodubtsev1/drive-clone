@@ -1,18 +1,20 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-import type { DriveItem } from "./types"
+import type {DriveItem, DriveMockData, Folder} from "./types"
 import { mockData } from "./mock-data"
 
-export function getFolderContents(folderId: string): DriveItem[] {
-  return mockData.filter((item) => item.parentId === folderId)
+export function getFolderContents(folderId: number): DriveMockData {
+  const files = mockData.files.filter((item) => item.parentId === folderId)
+  const folders = mockData.folders.filter((item) => item.parentId === folderId)
+  return { files, folders}
 }
 
-export function getFolderById(folderId: string): DriveItem | undefined {
-  return mockData.find((item) => item.id === folderId && item.type === "folder")
+export function getFolderById(folderId: number): Folder | undefined {
+  return mockData.folders.find((folder) => folder.id === folderId)
 }
 
-export function getBreadcrumbPath(folderId: string): DriveItem[] {
+export function getBreadcrumbPath(folderId: number): DriveItem[] {
   const path: DriveItem[] = []
   let currentFolder = getFolderById(folderId)
 

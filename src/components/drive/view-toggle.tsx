@@ -2,7 +2,7 @@
 
 import { Grid, List } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {ViewType} from "@/components/drive/file-grid";
+import {ViewType} from "@/components/drive/items-view";
 
 interface ViewToggleProps {
   view: ViewType

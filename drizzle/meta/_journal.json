@@ -1,10 +1,19 @@
 {
+  "version": "7",
+  "dialect": "singlestore",
   "entries": [
     {
       "idx": 0,
       "version": "1",
-      "when": 1747742725657,
-      "tag": "0000_dark_rumiko_fujikawa",
+      "when": 1748893231505,
+      "tag": "0000_baseline_production_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "1",
+      "when": 1748980038236,
+      "tag": "0001_minor_bedlam",
       "breakpoints": true
     }
   ]

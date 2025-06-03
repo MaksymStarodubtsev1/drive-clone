@@ -1,0 +1,3 @@
+-- Baseline migration: Production database already matches this schema
+-- Tables drive-store_files_table and drive-store_folders_table already exist
+-- This migration marks the starting point for future schema changes

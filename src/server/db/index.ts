@@ -1,6 +1,8 @@
 import { createPool, type Pool } from "mysql2/promise";
+import { drizzle } from "drizzle-orm/singlestore";
 
 import { env } from "@/env";
+import * as schema from "./schema";
 
 /**
  * Cache the database connection in development. This avoids creating a new connection on every HMR
@@ -8,6 +10,7 @@ import { env } from "@/env";
  */
 const globalForDb = globalThis as unknown as {
   conn: Pool | undefined;
+  db: ReturnType<typeof drizzle> | undefined;
 };
 
 export const conn =
@@ -20,7 +23,13 @@ export const conn =
       ssl: {},
       maxIdle: 0,
   });
-if (env.NODE_ENV !== "production") globalForDb.conn = conn;
+
+export const db = globalForDb.db ?? drizzle(conn, { schema });
+
+if (env.NODE_ENV !== "production") {
+  globalForDb.conn = conn;
+  globalForDb.db = db;
+}
 
 conn.addListener("error", (err) => {
     console.error("Database connection error:", err);

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useParams } from "next/navigation"
 import { Breadcrumb } from "@/components/drive/breadcrumb"
 import { ViewToggle } from "@/components/drive/view-toggle"
-import {FileGrid, ViewType} from "@/components/drive/file-grid"
+import {FileGrid, ItemsView, ViewType} from "@/components/drive/items-view"
 import { getFolderContents, getBreadcrumbPath, getFolderById } from "@/lib/utils"
 
 export default function FolderPage() {
@@ -14,9 +14,9 @@ export default function FolderPage() {
   const pathArray = Array.isArray(params.path) ? params.path : [params.path]
   const folderId = pathArray[pathArray.length - 1]  ?? ''
 
-  const folder = getFolderById(folderId)
-  const folderItems = getFolderContents(folderId)
-  const breadcrumbPath = getBreadcrumbPath(folderId)
+  const folder = getFolderById(Number(folderId))
+  const {folders: folderItems, files: filesItems} = getFolderContents(Number(folderId))
+  const breadcrumbPath = getBreadcrumbPath(Number(folderId))
 
   if (!folder) {
     return <div className="container mx-auto px-4 py-8">Folder not found</div>
@@ -32,7 +32,7 @@ export default function FolderPage() {
       <Breadcrumb path={breadcrumbPath} />
 
       <div className="bg-white rounded-lg shadow p-4">
-        <FileGrid items={folderItems} view={view} />
+        <ItemsView folders={folderItems} files={filesItems} view={view} />
       </div>
     </div>
   )

@@ -3,13 +3,14 @@
 import { useState } from "react"
 import { Breadcrumb } from "@/components/drive/breadcrumb"
 import { ViewToggle } from "@/components/drive/view-toggle"
-import {FileGrid, ViewType} from "@/components/drive/file-grid"
+import {FileGrid, ItemsView, ViewType} from "@/components/drive/items-view"
 import { getFolderContents, getBreadcrumbPath } from "@/lib/utils"
+import {FolderItem} from "@/components/drive/file-item";
 
 export default function DrivePage() {
   const [view, setView] = useState<ViewType>(ViewType.List)
-  const rootItems = getFolderContents("root")
-  const breadcrumbPath = getBreadcrumbPath("root")
+  const {folders: folderItems, files: filesItems} = getFolderContents(null)
+  const breadcrumbPath = getBreadcrumbPath(1)
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -21,7 +22,7 @@ export default function DrivePage() {
       <Breadcrumb path={breadcrumbPath} />
 
       <div className="bg-white rounded-lg shadow p-4">
-        <FileGrid items={rootItems} view={view} />
+        <ItemsView folders={folderItems} files={filesItems} view={view} />
       </div>
     </div>
   )
